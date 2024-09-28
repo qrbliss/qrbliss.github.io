@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+        }
+        .overlay {
+            background: url('images/backdrop2.webp') no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        }
+        .content {
+            text-align: center;
+            color: rgb(255, 255, 255);
+            z-index: 1;
+        }
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
+        p {
+            font-size: 1.5rem;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .btn {
+            background-color: #2C3E50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .btn:hover {
+            background-color: #ff7f7f;
+        }
+        /* Countdown timer */
+        .countdown {
+            margin-top: 50px;
+            font-size: 2rem;
+        }
+        .countdown span {
+            display: inline-block;
+            min-width: 50px;
+            padding: 10px;
+            background-color: #ff7f7f;
+            color: #2C3E50;
+            border-radius: 10px;
+            margin: 0 5px;
+        }
+        /* Venue Section */
+        .venue {
+            background-color: #ff7f7f;
+            color: #2C3E50;
+            padding: 40px;
+            text-align: center;
+        }
+        .venue h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .venue p {
+            font-size: 1.25rem;
+            margin: 5px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay">
+        <div class="content">
+            <h1>Amit & Priya</h1>
+            <p>Are Getting Married!</p>
+            <div class="buttons">
+                <a href="images/backdrop2.webp" class="btn" target="_blank">View Photos</a>
+                <a href="files/WELCOME TO THE.pdf" class="btn" target="_blank">Itinerary</a>
+                <a href="https://docs.google.com/forms/d/1kNYOG9hBlGfJmICmRt3DoZV-_idGbxCHYWQZPP5W184/edit" class="btn" target="_blank">RSVP Form</a>
+                <!-- Ensure the map link is correctly formatted -->
+                <a href="https://maps.app.goo.gl/HAkgYNUHdBF9H7Pq8" class="btn" target="_blank">Location</a>
+            </div>
+        </div>
+    </div>
+    
+
+            <!-- Countdown Timer -->
+            <div class="countdown" id="countdown">
+                <span id="days">00</span> Days
+                <span id="hours">00</span> Hours
+                <span id="minutes">00</span> Minutes
+                <span id="seconds">00</span> Seconds
+            </div>
+        </div>
+    </div>
+
+    <!-- Venue Section -->
+    <section class="venue">
+        <h2>Venue</h2>
+        <p><strong>Date:</strong> 22th December 2024</p>
+        <p><strong>Location:</strong> Grand Palace, New Delhi, India</p>
+        <p>We are thrilled to celebrate with you at this beautiful venue. The ceremony will begin at 6:00 PM.</p>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2024 Amit & Priya's Wedding. Designed with Love designed by QR Bliss.</p>
+    </footer>
+
+    <script>
+        // Countdown Timer JavaScript
+        const weddingDate = new Date('December 22, 2024 18:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = weddingDate - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerHTML = days;
+            document.getElementById('hours').innerHTML = hours;
+            document.getElementById('minutes').innerHTML = minutes;
+            document.getElementById('seconds').innerHTML = seconds;
+
+            // If the countdown is over, display "Wedding is happening!"
+            if (timeLeft < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = "Wedding is happening!";
+            }
+        }
+
+        // Update the countdown every 1 second
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
